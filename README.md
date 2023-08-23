@@ -1,1 +1,1 @@
-# active-learning-DensityBasedQBC
+# active-learning-densitybasedqbc
