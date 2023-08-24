@@ -5,7 +5,7 @@ Created on Fri Feb 10 19:24:31 2023
 """
 
 import math
-
+import random 
 def voteEntropy(committee):
     # converting our list to a filtered list
     committeeUnique = [x for i, x in enumerate(committee) if x not in committee[:i]]
@@ -15,7 +15,7 @@ def voteEntropy(committee):
         statistic.append(val)
     return -sum(statistic)
 
-class VariableQueryByCommittee:
+class RandomizedQueryByCommittee:
     def __init__(self, df, model, Committee, thresh, budget, s):
         self.model = model
         self.df = df
@@ -24,7 +24,7 @@ class VariableQueryByCommittee:
         self.budget = budget
         self.s = s
 
-    def create_variable_query_by_committee_accuracy_list(self):
+    def create_randomized_query_by_committee_accuracy_list(self):
         column_names = [col for col in self.df.columns]
         z = [(list(self.df.loc[i][0:self.df.shape[1]-1]), self.df.loc[i][self.df.shape[1]-1]) for i in range(self.df.shape[0])]
 
@@ -74,7 +74,7 @@ class VariableQueryByCommittee:
                     else:
                         committee_output.append(0.0)
 
-                    if voteEntropy(committee_output) >= self.thresh:
+                    if voteEntropy(committee_output) >= self.thresh or random.random() < self.Propotion:
                         self.model = self.model.learn_one(a, b)
                         model_1 = model_1.learn_one(a, b)  # Adaptive Random Forest Classifier
                         model_2 = model_2.learn_one(a, b)  # Bagging Classifier
