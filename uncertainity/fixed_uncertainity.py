@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-class VariableUncertainty:
+class FixedUncertainty:
     def __init__(self, df, model, budget, s):
         self.model = model
         self.df = df
