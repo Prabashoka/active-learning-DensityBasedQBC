@@ -60,9 +60,6 @@ class VariableUncertainty:
                 if abs(prob_0 - prob_1) <= self.thresh:
                     self.model = self.model.learn_one(a, b)
                     cost += 1
-                    self.thresh = self.thresh * (1 - self.s)
-                else:
-                    self.thresh = self.thresh * (1 + self.s)
 
         accuracy_measure = []
         for p in range(math.floor(len(z) / 1000)):
