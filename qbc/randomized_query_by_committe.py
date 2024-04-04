@@ -6,6 +6,8 @@ Created on Fri Feb 10 19:24:31 2023
 
 import math
 import random 
+from statistics import mean
+
 def voteEntropy(committee):
     # converting our list to a filtered list
     committeeUnique = [x for i, x in enumerate(committee) if x not in committee[:i]]
@@ -84,9 +86,6 @@ class RandomizedQueryByCommittee:
                         self.thresh = self.thresh * (1 + self.s)
                     else:
                         self.thresh = self.thresh * (1 - self.s)
-
-        from statistics import mean
-        import math
         accuracy_measure = []
         accuracy_measure.append(cost)
         for p in range(math.floor(len(z) / 1000)):
